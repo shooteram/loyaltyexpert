@@ -3,7 +3,8 @@ import cn from "classnames";
 
 class SearchBar extends React.Component {
   render() {
-    const { className } = { ...this.props };
+    const { className, onChange } = { ...this.props };
+
     return (
       <input
         className={cn(
@@ -12,6 +13,7 @@ class SearchBar extends React.Component {
         )}
         type="search"
         placeholder="Search ..."
+        onChange={onChange}
       />
     );
   }

@@ -11,6 +11,7 @@ class App extends React.Component {
     super(props);
     this.state = { products: null, visibleProducts: null, activePage: 1 };
     this.handlePageChange = this.handlePageChange.bind(this);
+    this.handleSearch = this.handleSearch.bind(this);
   }
 
   componentDidMount() {
@@ -29,6 +30,17 @@ class App extends React.Component {
     }
   }
 
+  handleSearch(e) {
+    let value = e.target.value;
+    if (!value) return this.handlePageChange(1);
+
+    let result = this.state.products.filter(
+      product => product.name.indexOf(value) >= 0,
+    );
+
+    this.setState({ visibleProducts: result });
+  }
+
   render() {
     const { fetching, error } = { ...this.props };
     const { products, visibleProducts } = { ...this.state };
@@ -41,7 +53,7 @@ class App extends React.Component {
           {visibleProducts && (
             <React.Fragment>
               <h2 className="mb-4">Products ({products.length})</h2>
-              <SearchBar className="mb-3 w-full" />
+              <SearchBar onChange={this.handleSearch} className="mb-3 w-full" />
 
               <div className="flex flex-wrap -mx-2 cursor-default">
                 {visibleProducts.map((product, key) => {
