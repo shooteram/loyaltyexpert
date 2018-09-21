@@ -3,29 +3,62 @@ import { connect } from "react-redux";
 import * as actions from "./actions";
 import Product from "./components/Product";
 import SearchBar from "./components/SearchBar";
+import Pagination from "react-js-pagination";
+import { chunk } from "lodash";
 
 class App extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = { products: null, visibleProducts: null, activePage: 1 };
+    this.handlePageChange = this.handlePageChange.bind(this);
+  }
+
   componentDidMount() {
     this.props.getProducts();
   }
 
+  handlePageChange(page) {
+    console.log(page);
+    let products = chunk(this.state.products, 10);
+    this.setState({ visibleProducts: products[page - 1], activePage: page });
+  }
+
+  componentDidUpdate() {
+    if (this.props.products && !this.state.visibleProducts) {
+      this.setState({ products: this.props.products });
+      this.handlePageChange(this.state.activePage);
+    }
+  }
+
   render() {
-    const { fetching, products, error } = { ...this.props };
+    const { fetching, error } = { ...this.props };
+    const { products, visibleProducts } = { ...this.state };
 
     return fetching ? (
       <div>fetching ...</div>
     ) : (
       <div>
         <div className="container mx-auto p-4">
-          {products && (
+          {visibleProducts && (
             <React.Fragment>
               <h2 className="mb-4">Products ({products.length})</h2>
               <SearchBar className="mb-3 w-full" />
 
               <div className="flex flex-wrap -mx-2 cursor-default">
-                {products.map((product, key) => {
+                {visibleProducts.map((product, key) => {
                   return <Product key={key} data={product} />;
                 })}
+              </div>
+
+              <div className="text-center">
+                <Pagination
+                  hideDisabled
+                  activePage={this.state.activePage}
+                  itemsCountPerPage={10}
+                  totalItemsCount={products.length}
+                  pageRangeDisplayed={5}
+                  onChange={this.handlePageChange}
+                />
               </div>
             </React.Fragment>
           )}
