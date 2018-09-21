@@ -18,7 +18,6 @@ class App extends React.Component {
   }
 
   handlePageChange(page) {
-    console.log(page);
     let products = chunk(this.state.products, 10);
     this.setState({ visibleProducts: products[page - 1], activePage: page });
   }
