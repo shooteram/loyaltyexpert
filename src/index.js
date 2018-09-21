@@ -5,10 +5,14 @@ import App from "./App";
 import axios from "axios";
 
 import { Provider } from "react-redux";
-import { createStore } from "redux";
+import { createStore, applyMiddleware, compose } from "redux";
 import { reducer } from "./reducers";
+import createSagaMiddleware from "redux-saga";
+import { watcherSaga } from "./sagas";
 
-let store = createStore(reducer);
+const sagaMiddleware = createSagaMiddleware();
+let store = createStore(reducer, compose(applyMiddleware(sagaMiddleware)));
+sagaMiddleware.run(watcherSaga);
 
 axios.defaults.baseURL = "https://test-recrutement.loyaltyexpert.net/";
 axios.defaults.headers.common = {
