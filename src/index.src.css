@@ -23,3 +23,7 @@
   border: 1px solid #ddd;
   margin-left: -1px;
 }
+.pagination > li > a.active {
+  background: #007cb5;
+  color: white;
+}

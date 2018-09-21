@@ -57,6 +57,7 @@ class App extends React.Component {
                   totalItemsCount={products.length}
                   pageRangeDisplayed={5}
                   onChange={this.handlePageChange}
+                  activeLinkClass="active"
                 />
               </div>
             </React.Fragment>
