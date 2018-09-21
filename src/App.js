@@ -2,6 +2,7 @@ import React from "react";
 import { connect } from "react-redux";
 import * as actions from "./actions";
 import Product from "./components/Product";
+import SearchBar from "./components/SearchBar";
 
 class App extends React.Component {
   componentDidMount() {
@@ -19,6 +20,7 @@ class App extends React.Component {
           {products && (
             <React.Fragment>
               <h2 className="mb-4">Products ({products.length})</h2>
+              <SearchBar className="mb-3 w-full" />
 
               <div className="flex flex-wrap -mx-2 cursor-default">
                 {products.map((product, key) => {
