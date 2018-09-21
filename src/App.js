@@ -1,6 +1,7 @@
 import React from "react";
 import { connect } from "react-redux";
 import * as actions from "./actions";
+import Product from "./components/Product";
 
 class App extends React.Component {
   componentDidMount() {
@@ -8,9 +9,27 @@ class App extends React.Component {
   }
 
   render() {
-    return (
+    const { fetching, products, error } = { ...this.props };
+
+    return fetching ? (
+      <div>fetching ...</div>
+    ) : (
       <div>
-        <div className="container mx-auto p-4" />
+        <div className="container mx-auto p-4">
+          {products && (
+            <React.Fragment>
+              <h2 className="mb-4">Products ({products.length})</h2>
+
+              <div className="flex flex-wrap -mx-2 cursor-default">
+                {products.map((product, key) => {
+                  return <Product key={key} data={product} />;
+                })}
+              </div>
+            </React.Fragment>
+          )}
+
+          <p>{error}</p>
+        </div>
       </div>
     );
   }
@@ -18,6 +37,7 @@ class App extends React.Component {
 
 const mapStateToProps = state => ({
   fetching: state.fetching,
+  products: state.products,
   error: state.error,
 });
 
