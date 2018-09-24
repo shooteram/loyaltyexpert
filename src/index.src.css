@@ -3,7 +3,7 @@
 @tailwind utilities;
 
 .transition {
-  transition: all 5s ease;
+  transition: all 0.3s ease;
 }
 
 .pagination {
