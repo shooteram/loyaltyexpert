@@ -10,7 +10,6 @@
   margin-bottom: 20px;
   padding-left: 0;
   @apply inline-block;
-  /* box-shadow: 0 0 50px 10px rgba(0, 0, 0, 0.15); */
   @apply shadow-lg;
 }
 .pagination > li {
