@@ -2,6 +2,10 @@
 @tailwind components;
 @tailwind utilities;
 
+.transition {
+  transition: all 5s ease;
+}
+
 .pagination {
   margin-bottom: 20px;
   padding-left: 0;
