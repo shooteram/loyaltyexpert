@@ -3,27 +3,39 @@
 @tailwind utilities;
 
 .pagination {
-  display: inline-block;
+  margin-bottom: 20px;
   padding-left: 0;
-  margin: 20px 0;
-  border-radius: 4px;
+  @apply inline-block;
+  /* box-shadow: 0 0 50px 10px rgba(0, 0, 0, 0.15); */
+  @apply shadow-lg;
 }
 .pagination > li {
-  display: inline;
-}
-.pagination > li > a,
-.pagination > li > span {
-  position: relative;
-  float: left;
-  padding: 6px 12px;
-  line-height: 1.42857143;
-  text-decoration: none;
-  color: #337ab7;
-  background-color: #fff;
-  border: 1px solid #ddd;
+  list-style: none;
   margin-left: -1px;
+  padding: 6px 12px;
+  @apply border;
+  @apply bg-white;
+  @apply float-left;
+  @apply font-semibold;
+  @apply cursor-pointer;
+  @apply border-grey-light;
 }
-.pagination > li > a.active {
-  background: #007cb5;
-  color: white;
+.pagination > li > a {
+  @apply no-underline;
+  @apply leading-normal;
+  @apply text-blue;
+}
+.pagination li:first-child {
+  @apply rounded-l;
+}
+.pagination li:last-child {
+  @apply rounded-r;
+}
+.pagination > li.active {
+  @apply bg-blue;
+  @apply border-blue;
+}
+.pagination > li.active > a {
+  @apply text-white;
+}
 }
