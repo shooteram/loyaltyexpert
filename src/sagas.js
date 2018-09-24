@@ -11,7 +11,7 @@ function* fetchProducts() {
     let response = yield axios.get("products");
     yield put({ type: actions.PRODUCTS_FETCHED, products: response.data });
   } catch (e) {
-    let error = e.response.data.error || e.toString();
+    let error = e.response ? e.response.data.error : e.toString();
     yield put({ type: actions.API_CALL_FAILURE, error });
   }
 }
