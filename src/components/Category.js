@@ -5,7 +5,7 @@ class Category extends React.Component {
     const { name } = { ...this.props.data };
 
     return (
-      <span className="rounded text-xs no-underline text-blue text-center bg-blue-lightest py-1 px-4">
+      <span className="rounded text-xs no-underline text-blue text-center bg-blue-lightest py-1 px-4 mr-2">
         {name}
       </span>
     );
