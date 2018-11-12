@@ -40,9 +40,9 @@ class Product extends React.Component {
                 alt=""
               />
             )}
-          </div>
+          </div>          
 
-          <div className={imageLoaded ? "w-3/4" : "w-full"}>
+          <div className={`transition ${imageLoaded ? "w-3/4" : "w-full"}`}>
             {brand && <Brand data={brand} />}
 
             <h4 className="truncate mb-2" title={name}>
