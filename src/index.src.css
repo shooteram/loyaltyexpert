@@ -3,7 +3,7 @@
 @tailwind utilities;
 
 .transition {
-  transition: all 0.3s ease;
+  transition: all .4s cubic-bezier(0.83, -2.18, 0.52, 0.96);
 }
 
 .pagination {
