@@ -26,7 +26,7 @@ class Product extends React.Component {
         onClick={onClick}
         className="text-black no-underline flex w-full lg:w-1/2 px-2 mb-3"
       >
-        <div className="border-b-2 shadow hover:shadow-md w-full bg-white rounded-lg p-4 flex leading-normal cursor-pointer">
+        <div className="transition border-b-2 shadow hover:shadow-md w-full bg-white rounded-lg p-4 flex leading-normal cursor-pointer">
           <div
             className={`w-1/4 mr-4 text-center ${
               imageLoaded ? "visible" : "invisible absolute"
@@ -42,7 +42,7 @@ class Product extends React.Component {
             )}
           </div>
 
-          <div className={`transition ${imageLoaded ? "w-3/4" : "w-full"}`}>
+          <div className={imageLoaded ? "w-3/4" : "w-full"}>
             {brand && <Brand data={brand} />}
 
             <h4 className="truncate mb-2" title={name}>
