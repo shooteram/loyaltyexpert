@@ -40,7 +40,7 @@ class Product extends React.Component {
                 alt=""
               />
             )}
-          </div>          
+          </div>
 
           <div className={`transition ${imageLoaded ? "w-3/4" : "w-full"}`}>
             {brand && <Brand data={brand} />}
